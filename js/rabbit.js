@@ -1,38 +1,70 @@
-(function($){
+/**
+ * Created by kjones on 12/18/2014.
+ */
+var Rabbit = {
+	prev_state : 'right', // Stores the previous state
+	state : 'right', // run, jump;
+	maxy : 10,
+	y : 0,   // y position for jump
+	vy_start: 18, // initial velocity in vy
+	vy : 0,  // velocity for jump in y
+	vymax : 52, // max velocity in y
+	a : -0.75,  // Acceleration for jump
+    x : 0, // position in x
+    vx : -12,  // velocity in x
+    images : { 	run : "img/rabbit.gif",
+				jump : "img/rabbit.gif",
+			},
+    $sprites: null,
+	width: null,
+	init : function( width ) {
+        // Put the coyote on the screen
+		this.width = width;
+		this.$sprites = $.preload( this.images );
+        $('div#Rabbit').empty().append(this.$sprites['right']);
+    },
+	change_image : function( img ) {
+		var last;
+		if ( img !== last )
+			$('div#Rabbit').empty().append(this.$sprites[img]);
+		last = img;
+	},
 
-    var position = 0;
-    var speed = 6;
-    var $background = $("#FarBackground");
+	right : function () { this.state = 'right'},
 
-    var requestAnimFrame = (function(){
-        if (window.requestAnimationFrame) return window.requestAnimationFrame;
-        if (window.webkitRequestAnimationFrame) return window.webkitRequestAnimationFrame;
-        if (window.mozRequestAnimationFrame) return window.mozRequestAnimationFrame;
-        if (window.oRequestAnimationFrame) return window.oRequestAnimationFrame;
-        if (window.msRequestAnimationFrame) return window.msRequestAnimationFrame;
-        else return  function( callback, element ){
-            window.setTimeout(callback, element);
-        };
-    })();
+	jump : function() {
+		if ( this.state !== 'jump' && this.vy <= this.vymax ) {
+			this.state = 'jump';
+			this.vy += this.vy_start;
+			this.jump();
 
-    function draw() {
-      requestAnimFrame(draw,25);
+		}
+	},
 
-      // Update the position of each background layer
-      $('#Clouds').css('background-position', (position * (1.0/6.0)) );
-      $('#Background').css('background-position', (position * (1.0/3.0)) );
-      $('#Midground').css('background-position', (position * (2.0/3.0)) );
-      $('#Foreground').css('background-position', (position * (1.0))  );
-
-      // Update position
-      position = position - speed;
-
-      // Once the slowest moving background has wrapped, reset position
-      if ( position* (1.0/12.0) < -$background.width() ) {
-          position = 0;
+    run : function() {
+      if ( this.state === 'jump' ) {
+        this.y = this.a + this.vy + this.y;
+        this.vy = this.a + this.vy;
+        // limit y value for jump
+        // if ( this.y > this.maxy ) this.y = this.maxy; //I commented out this to get the y-position that I wanted
+        // Check to see if the jump is finished
+        if ( this.y < 0  && this.state === 'jump' ) {
+          this.vy = 0;
+          this.right();
+        }
       }
-    }
+      // Check to see if all the background images have wrapped around
+      if (this.x * (1.0 / 12.0) <= -this.width) {
+        this.x = 0;
+      }
 
-    // Start the animation
-    draw();
-})(jQuery);
+      // update the x position of the coyote
+      this.x = this.x + this.vx;
+
+      // Switch to the appropriate image based on the state of the coyote
+      this.change_image( this.state );
+
+      // move the current coyote image into position
+      $('#Rabbit').css('top', (this.maxy-this.y) );
+    }
+}
