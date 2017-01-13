@@ -1,0 +1,54 @@
+div#FarBackground {
+    position: absolute;
+    width:3000px;
+    height:540px;
+    margin:auto;
+    background-image: url(../img/FarBackground.png);
+    z-index: -5;
+}
+
+div#Clouds {
+     position: absolute;
+     width:3000px;
+     height:540px;
+     margin:auto;
+     background-image: url(../img/Clouds.png);
+     z-index: -4;
+ }
+
+div#Background {
+    position: absolute;
+    width:3000px;
+    height:540px;
+    margin:auto;
+    background-image: url(../img/Background.png);
+    z-index: -3;
+}
+
+
+div#Midground {
+    position: absolute;
+    width:3000px;
+    height:540px;
+    margin:auto;
+    background-image: url(../img/Midground.png);
+    z-index: -2;
+}
+
+div#Foreground {
+     position: absolute;
+     width:3000px;
+     height:540px;
+     margin:auto;
+     background-image: url(../img/Foreground.png);
+     z-index: -1;
+ }
+
+div#Rabbit {
+    position: absolute;
+    width:300px;
+    height:300px;
+    margin-top: 180px;
+    content: url(../img/rabbit.gif);
+    z-index: 0;
+}
