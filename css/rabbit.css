@@ -55,6 +55,7 @@ div#Rabbit {
     width:200px;
     height:200px;
     margin-top: 200px;
+    margin-left: 100px;
     content: url(../img/rabbit.gif);
     z-index: 0;
 }
@@ -67,4 +68,14 @@ div#Fox {
     top: 200px;
     content: url(../img/fox.gif);
     z-index: 0;
+}
+div#Timer {
+    border: solid black 2px;
+    background-color: #fff;
+    font-size: 1.8em;
+    display: inline-block;
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    padding: 5px;
 }
