@@ -4,7 +4,7 @@
  */
 
 // Function that will setup an animation frame
-requestAnimFrame = (function(){
+requestAnimFrame = (function() {
     if (window.requestAnimationFrame) return window.requestAnimationFrame;
     if (window.webkitRequestAnimationFrame) return window.webkitRequestAnimationFrame;
     if (window.mozRequestAnimationFrame) return window.mozRequestAnimationFrame;

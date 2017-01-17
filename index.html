@@ -5,15 +5,25 @@
     <link rel="stylesheet" href="css/rabbit.css" />
   <head>
 <body>
-  <div id="FarBackground"></div>
-  <div id="Background"></div>
-  <div id="Clouds"></div>
-  <div id="Midground"></div>
-  <div id="Foreground"></div>
-  <div id="Rabbit"></div>
+  <div class="container">
+    <div id="FarBackground"></div>
+    <div id="Background"></div>
+    <div id="Clouds"></div>
+    <div id="Midground"></div>
+    <div id="Foreground"></div>
+    <div id="Rabbit">
+      <div id="RabbitHitbox">Rabbit
+      </div>
+    </div>
+    <div id="Fox">
+      <div id="FoxHitbox">Fox
+      </div>
+    </div>
+  </div>
   <script src="js/jquery-1.11.1.js"></script>
+  <script src="js/fox.js"></script>
   <script src="js/Rabbit.js" defer ></script>
-  <script src="js/RabbitController.js" defer ></script>
-  <script src="js/RabbitUtilities.js" defer ></script>
+  <script src="js/GameController.js" defer ></script>
+  <script src="js/GameUtilities.js" defer ></script>
 </body>
 </html>

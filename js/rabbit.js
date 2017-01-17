@@ -10,61 +10,58 @@ var Rabbit = {
 	vy : 0,  // velocity for jump in y
 	vymax : 52, // max velocity in y
 	a : -0.75,  // Acceleration for jump
-    x : 0, // position in x
-    vx : -12,  // velocity in x
-    images : { 	run : "img/rabbit.gif",
-				jump : "img/rabbit.gif",
-			},
-    $sprites: null,
+  x : 0, // position in x
+  vx : -12,  // velocity in x
+  images : {
+		run : "img/rabbit.gif",
+		jump : "img/rabbit.gif",
+	},
+  $sprites: null,
 	width: null,
 	init : function( width ) {
         // Put the coyote on the screen
 		this.width = width;
 		this.$sprites = $.preload( this.images );
-        $('div#Rabbit').empty().append(this.$sprites['right']);
-    },
+    $('div#Rabbit').empty().append(this.$sprites['right']);
+  },
 	change_image : function( img ) {
 		var last;
 		if ( img !== last )
 			$('div#Rabbit').empty().append(this.$sprites[img]);
 		last = img;
 	},
-
 	right : function () { this.state = 'right'},
-
 	jump : function() {
 		if ( this.state !== 'jump' && this.vy <= this.vymax ) {
 			this.state = 'jump';
 			this.vy += this.vy_start;
 			this.jump();
-
 		}
 	},
-
-    run : function() {
-      if ( this.state === 'jump' ) {
-        this.y = this.a + this.vy + this.y;
-        this.vy = this.a + this.vy;
-        // limit y value for jump
-        // if ( this.y > this.maxy ) this.y = this.maxy; //I commented out this to get the y-position that I wanted
-        // Check to see if the jump is finished
-        if ( this.y < 0  && this.state === 'jump' ) {
-          this.vy = 0;
-          this.right();
-        }
+  run : function() {
+    if ( this.state === 'jump' ) {
+			this.vy += this.a;
+      this.y += this.vy;
+      // limit y value for jump
+      // if ( this.y > this.maxy ) this.y = this.maxy; //I commented out this to get the y-position that I wanted
+      // Check to see if the jump is finished
+      if ( this.y < 0  && this.state === 'jump' ) {
+        this.vy = 0;
+        this.right();
       }
-      // Check to see if all the background images have wrapped around
-      if (this.x * (1.0 / 12.0) <= -this.width) {
-        this.x = 0;
-      }
-
-      // update the x position of the coyote
-      this.x = this.x + this.vx;
-
-      // Switch to the appropriate image based on the state of the coyote
-      this.change_image( this.state );
-
-      // move the current coyote image into position
-      $('#Rabbit').css('top', (this.maxy-this.y) );
     }
+    // Check to see if all the background images have wrapped around
+    if (this.x * (1.0 / 12.0) <= -this.width) {
+      this.x = 0;
+    }
+
+    // update the x position of the coyote
+    this.x = this.x + this.vx;
+
+    // Switch to the appropriate image based on the state of the coyote
+    this.change_image( this.state );
+
+    // move the current coyote image into position
+    $('#Rabbit').css('top', (this.maxy-this.y) );
+  }
 }
