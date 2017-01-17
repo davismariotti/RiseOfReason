@@ -52,12 +52,13 @@ var Rabbit = {
       }
     }
     // Check to see if all the background images have wrapped around
-    if (this.x * (1.0 / 36.0) <= -this.width) {
+    if (this.x * (1.0 / 100.0) <= -this.width) {
       this.x = 0;
     }
 
     // update the x position of the coyote
     this.x = this.x + this.vx;
+		console.log(this.x);
 
     // Switch to the appropriate image based on the state of the coyote
     this.change_image( this.state );

@@ -13,7 +13,7 @@ var RabbitController = {
 		this.$rabbit.init(this.$background.width());
     this.$fox = Object.create(Fox);
     this.$fox.init();
-    $('#Score').html(this.score);
+    $('#Score').html("Score: " + this.score);
 		$("body").on("keydown", this.KeyPressed.bind(this));
   },
     draw : function() {
@@ -81,18 +81,22 @@ var RabbitController = {
         {
           this.$food[0].deleteDiv();
           this.$food.shift();
-          $('#Score').html(++this.score);
+          $('#Score').html("Score: " + ++this.score);
         }
       }
       if (doTheyCollide($("#RabbitHitbox"), $("#FoxHitbox"))) {
         this.pausedFlag = true;
         this.wasPaused = true;
-        this.$food[0].deleteDiv();
-        this.$food.shift();
+        if (this.$food.length == 1)
+        {
+          this.$food[0].deleteDiv();
+          this.$food.shift();
+        }
         $('#MenuText').html('<h2>You Died</h2>Score: ' + this.score + '</div>');
         $('h2').css('color', 'red');
+        $('#Fox').hide();
         $('#StartMenu').show();
-        $('#Score').html(0);
+        $('#Score').html("Score: " + 0);
         this.score = 0;
       }
 		}
@@ -116,6 +120,7 @@ var RabbitController = {
   resetGame: function() {
     //$('#Fox').css('right', 0);
     $('#Rabbit').css('top', 200);
+    $('#Fox').show();
     this.$rabbit.state = "right";
     this.$rabbit.vy = 0;
     this.$rabbit.y = -200;
