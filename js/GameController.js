@@ -25,6 +25,7 @@ var RabbitController = {
         //console.log(this.$rabbit.x);
         //console.log(this.$rabbit.x * (2.0 / 3.0));
         $('#Fox').css('right', (-(this.$rabbit.x) % 3300));
+        this.$fox.x = $('#Fox').css('left');
         //console.log($('#fox').css('right'));
       }
 

@@ -64,7 +64,7 @@ div#Fox {
     right: 0;
     width:200px;
     height:200px;
-    margin-top: 200px;
+    top: 200px;
     content: url(../img/fox.gif);
     z-index: 0;
 }
