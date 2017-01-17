@@ -27,6 +27,13 @@ var RabbitController = {
         $('#Fox').css('right', (-(this.$rabbit.x) % 3300));
         //console.log($('#fox').css('right'));
       }
+
+      //console.log(this.$rabbit.getBox());
+      //console.log(this.$fox.getBox());
+      if(this.$rabbit.getBox().contains(this.$fox.getBox())) {
+        console.log("BOOM");
+      }
+
 		}
   },
   rabbitJump: function(e) {

@@ -45,3 +45,29 @@ if ( typeof Object.create !== 'function' ) {
         return new F();
     }
 }
+
+function Box(x, y, width, height) {
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.height = width;
+
+  this.contains = function (x, y) {
+    if(!((x <= this.x) && (x <= (this.x - this.width)))) {
+      return false;
+    }
+    if(!((y <= this.y) && (y <= (this.y - this.height)))) {
+      return false;
+    }
+    return true;
+  }
+
+  this.overlaps = function(box) {
+    return ((
+      this.contains(box.x, box.y) ||
+      this.contains(box.x + box.width, box.y) ||
+      this.contains(box.x + box.width, box.y - box.height) ||
+      this.contains(box.x, box.y - box.height)
+    ));
+  }
+}

@@ -63,5 +63,9 @@ var Rabbit = {
 
     // move the current coyote image into position
     $('#Rabbit').css('top', (this.maxy-this.y) );
+  },
+  getBox : function() {
+    return new Box(this.x + 50, this.y - 20, 140, 120);
   }
+
 }
