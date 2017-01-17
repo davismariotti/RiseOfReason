@@ -15,44 +15,21 @@
     <div id="RabbitHitbox"></div>
     <div id="Fox"></div>
     <div id="FoxHitbox"></div>
+    <div id="FoodHitbox"></div>
     <div id="StartMenu">
       <div id="MenuText">
         <h2>Rise of Reason</h2>
         Press any key to start!</div>
       </div>
   </div>
+  <div id="Score"></div>
   <script src="js/jquery-1.11.1.js"></script>
+  <script src="js/food.js"></script>
   <script src="js/fox.js"></script>
   <script src="js/Rabbit.js" defer ></script>
-  <script src="js/GameController.js" defer ></script>
   <script src="js/GameUtilities.js" defer ></script>
+  <script src="js/GameController.js" defer ></script>
   <div id="Timer">
   <label id="minutes">00</label>:<label id="seconds">00</label></div>
-    <script type="text/javascript">
-        var minutesLabel = document.getElementById("minutes");
-        var secondsLabel = document.getElementById("seconds");
-        var totalSeconds = 0;
-        setInterval(setTime, 1000);
-
-        function setTime()
-        {
-            ++totalSeconds;
-            secondsLabel.innerHTML = pad(totalSeconds%60);
-            minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
-        }
-
-        function pad(val)
-        {
-            var valString = val + "";
-            if(valString.length < 2)
-            {
-                return "0" + valString;
-            }
-            else
-            {
-                return valString;
-            }
-        }
-    </script>
 </body>
 </html>

@@ -52,7 +52,7 @@ var Rabbit = {
       }
     }
     // Check to see if all the background images have wrapped around
-    if (this.x * (1.0 / 12.0) <= -this.width) {
+    if (this.x * (1.0 / 36.0) <= -this.width) {
       this.x = 0;
     }
 

@@ -3,19 +3,27 @@ var RabbitController = {
     $background : null,
     $rabbit : null,
     $fox : null,
+    $food : [],
     pausedFlag : true,
-    testFlag : false,
+    wasPaused : true,
+    score : 0,
     init : function() {
 		this.$background = $("#FarBackground");
 		this.$rabbit = Object.create(Rabbit);
 		this.$rabbit.init(this.$background.width());
     this.$fox = Object.create(Fox);
     this.$fox.init();
+    $('#Score').html(this.score);
 		$("body").on("keydown", this.KeyPressed.bind(this));
   },
     draw : function() {
       if (this.pausedFlag) {
         return;
+      }
+      if (this.wasPaused) {
+        this.wasPaused = false;
+        totalSeconds = 0;
+        console.log("UNPAUSED");
       }
       //console.log("hi");
       requestAnimFrame( RabbitController.draw.bind(this), 25);
@@ -34,12 +42,32 @@ var RabbitController = {
         this.$fox.x = parseInt($('#Fox').css('left'));
         //console.log($('#fox').css('right'));
       }
+      if (this.$food.length == 1) {
+        if (parseInt($('#food' + this.$food[0].uniqueId).css('right')) > parseInt($('#Background').css('width'))) {
+          // Food has left bounds of screen
+          this.$food[0].deleteDiv();
+          this.$food.shift();
+        }
+        else {
+          $('#food' + this.$food[0].uniqueId).css('right', parseInt($('#food' + this.$food[0].uniqueId).css('right')) + 12);
+        }
+      }
+      else if (parseInt($('#Fox').css('right')) > 150 && parseInt($('#Fox').css('left')) > 150 && this.$food.length < 1) {
+        if (Math.random() <= 0.03)
+        {
+          console.log("SPAWNING FOOD");
+          this.$food.push(Object.create(Food));
+          this.$food[0].spawn(0);
+        }
+      }
 
       // Draw Hit Boxes
       $("#RabbitHitbox").css('left', parseInt($("#Rabbit").css('left')) + 50);
       $("#RabbitHitbox").css('top', parseInt($("#Rabbit").css('top')) + 20);
       $("#FoxHitbox").css('left', parseInt($("#Fox").css('left')) + 20);
       $("#FoxHitbox").css('top', parseInt($("#Fox").css('top')) + 40);
+      $("#FoodHitbox").css('left', parseInt($("#food1").css('left')));
+      $("#FoodHitbox").css('top', parseInt($("#food1").css('top')));
 
       /*console.log("Rabbit");
       console.log(this.$rabbit.getBox());
@@ -48,9 +76,24 @@ var RabbitController = {
       //if(this.$rabbit.getBox().overlaps(this.$fox.getBox())) {
       //  console.log("BOOM");
       //}
+      if (doTheyCollide($("#RabbitHitbox"), $("#FoodHitbox"))) {
+        if (this.$food.length == 1)
+        {
+          this.$food[0].deleteDiv();
+          this.$food.shift();
+          $('#Score').html(++this.score);
+        }
+      }
       if (doTheyCollide($("#RabbitHitbox"), $("#FoxHitbox"))) {
         this.pausedFlag = true;
+        this.wasPaused = true;
+        this.$food[0].deleteDiv();
+        this.$food.shift();
+        $('#MenuText').html('<h2>You Died</h2>Score: ' + this.score + '</div>');
+        $('h2').css('color', 'red');
         $('#StartMenu').show();
+        $('#Score').html(0);
+        this.score = 0;
       }
 		}
   },

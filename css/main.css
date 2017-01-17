@@ -80,18 +80,33 @@ div#Timer {
     padding: 5px;
 }
 
+div#Score {
+    border: solid black 2px;
+    background-color: #fff;
+    font-size: 1.8em;
+    display: inline-block;
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    padding: 5px;
+}
+
 div#RabbitHitbox {
   position: absolute;
   width: 120px;
   height: 120px;
-  border: 1px solid #000000;
 }
 
 div#FoxHitbox {
   position: absolute;
   width: 140px;
   height: 120px;
-  border: 1px solid #000000;
+}
+
+div#FoodHitbox {
+  position: absolute;
+  width: 80px;
+  height: 80px;
 }
 
 div#StartMenu {
@@ -110,4 +125,11 @@ div#MenuText {
   color: white;
   text-align: center;
   margin-top: 150px;
+}
+
+.food {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  content: url(../img/carrot.png);
 }
