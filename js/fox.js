@@ -8,9 +8,10 @@ var Fox = {
 	},
   init : function() {
     this.$sprites = $.preload(this.images);
+    this.y = $('#Fox').css('top');
     //$('div#Fox').empty().append(this.$sprites['run']);
   },
   getBox : function() {
-    return new Box(this.x + 20, this.y - 20, 160, 160);
+    return new Box($('#FoxHitbox').css('left'), $('#FoxHitbox').css('top'), 200, 200);
   }
 }

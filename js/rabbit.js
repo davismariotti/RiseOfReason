@@ -5,7 +5,7 @@ var Rabbit = {
 	prev_state : 'right', // Stores the previous state
 	state : 'right', // run, jump;
 	maxy : 10,
-	y : 0,   // y position for jump
+	y : -200,   // y position for jump
 	vy_start: 18, // initial velocity in vy
 	vy : 0,  // velocity for jump in y
 	vymax : 52, // max velocity in y
@@ -45,8 +45,9 @@ var Rabbit = {
       // limit y value for jump
       // if ( this.y > this.maxy ) this.y = this.maxy; //I commented out this to get the y-position that I wanted
       // Check to see if the jump is finished
-      if ( this.y < 0  && this.state === 'jump' ) {
+      if ( this.y < -200  && this.state === 'jump' ) {
         this.vy = 0;
+				this.y = -200;
         this.right();
       }
     }
@@ -62,10 +63,11 @@ var Rabbit = {
     this.change_image( this.state );
 
     // move the current coyote image into position
-    $('#Rabbit').css('top', (this.maxy-this.y) );
+    $('#Rabbit').css('top', (-this.y) );
   },
   getBox : function() {
-    return new Box(parseInt($('#Rabbit').css('left')) + 50, this.y - 20, 140, 120);
+		//console.log(this.y);
+    return new Box($('#RabbitHitbox').css('left'), $('#RabbitHitbox').css('top'), 200, 200);
   }
 
 }

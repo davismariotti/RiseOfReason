@@ -53,25 +53,26 @@ function Box(x, y, width, height) {
   this.height = width;
 
   this.contains = function (x, y) {
-    if(!((x <= this.x) && (x <= (this.x - this.width)))) {
+    console.log("x: " + x);
+    console.log("this.x: " + this.x);
+    console.log("this.width: " + this.width);
+    if(!((x >= this.x) && (x <= (this.x + this.width)))) {
       return false;
     }
-    if(!((y <= this.y) && (y <= (this.y - this.height)))) {
+    console.log("y: " + y);
+    console.log("this.y: " + this.y);
+    console.log("this.height: " + this.height);
+    if(!((y <= this.y) && (y >= (this.y - this.height)))) {
       return false;
     }
     return true;
   }
 
   this.overlaps = function(box) {
-    return ((
-      this.contains(box.x, box.y) ||
-      this.contains(box.x + box.width, box.y) ||
-      this.contains(box.x + box.width, box.y - box.height) ||
-      this.contains(box.x, box.y - box.height)
-    ));
+    return this.contains(box.x, box.y);
   }
 }
 
 function collision() {
-  
+
 }

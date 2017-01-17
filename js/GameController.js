@@ -31,9 +31,9 @@ var RabbitController = {
 
       // Draw Hit Boxes
       $("#RabbitHitbox").css('left', $("#Rabbit").css('left'));
-      $("#RabbitHitbox").css('top', -this.$rabbit.y);
-      $("#FoxHitbox").css('left', this.$fox.x);
-      $("#FoxHitbox").css('top', this.$fox.y);
+      $("#RabbitHitbox").css('top', $("#Rabbit").css('top'));
+      $("#FoxHitbox").css('left', $("#Fox").css('left'));
+      $("#FoxHitbox").css('top', $("#Fox").css('top'));
 
       /*console.log("Rabbit");
       console.log(this.$rabbit.getBox());
@@ -42,7 +42,6 @@ var RabbitController = {
       if(this.$rabbit.getBox().overlaps(this.$fox.getBox())) {
         console.log("BOOM");
       }
-
 		}
   },
   rabbitJump: function(e) {

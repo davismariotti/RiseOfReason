@@ -54,8 +54,12 @@ div#Rabbit {
     position: absolute;
     width:200px;
     height:200px;
+<<<<<<< Updated upstream
     margin-top: 200px;
     margin-left: 100px;
+=======
+    top: 200px;
+>>>>>>> Stashed changes
     content: url(../img/rabbit.gif);
     z-index: 0;
 }
@@ -82,20 +86,14 @@ div#Timer {
 =======
 
 div#RabbitHitbox {
-  display: block;
-  position: relative;
-  left: 30px;
-  top: 30px;
+  position: absolute;
   width: 200px;
   height: 200px;
   border: 1px solid #000000;
 }
 
 div#FoxHitbox {
-  display: block;
-  position: relative;
-  left: 30px;
-  top: 30px;
+  position: absolute;
   width: 200px;
   height: 200px;
   border: 1px solid #000000;
