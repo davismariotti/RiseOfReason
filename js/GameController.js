@@ -24,13 +24,15 @@ var RabbitController = {
       if (typeof this.$fox != "undefined") {
         //console.log(this.$rabbit.x);
         //console.log(this.$rabbit.x * (2.0 / 3.0));
-        $('#Fox').css('right', (-(this.$rabbit.x) % 3300));
-        this.$fox.x = $('#Fox').css('left');
+        $('#Fox').css('right', (-(this.$rabbit.x) % $(document).width()));
+        this.$fox.x = parseInt($('#Fox').css('left'));
         //console.log($('#fox').css('right'));
       }
 
-      //console.log(this.$rabbit.getBox());
-      //console.log(this.$fox.getBox());
+      console.log("Rabbit");
+      console.log(this.$rabbit.getBox());
+      console.log("Fox");
+      console.log(this.$fox.getBox());
       if(this.$rabbit.getBox().contains(this.$fox.getBox())) {
         console.log("BOOM");
       }
