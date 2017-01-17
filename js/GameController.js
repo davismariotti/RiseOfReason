@@ -3,15 +3,21 @@ var RabbitController = {
     $background : null,
     $rabbit : null,
     $fox : null,
+    pausedFlag : true,
+    testFlag : false,
     init : function() {
 		this.$background = $("#FarBackground");
 		this.$rabbit = Object.create(Rabbit);
 		this.$rabbit.init(this.$background.width());
     this.$fox = Object.create(Fox);
     this.$fox.init();
-		$("body").on("keydown", this.rabbitJump.bind(this));
+		$("body").on("keydown", this.KeyPressed.bind(this));
   },
     draw : function() {
+      if (this.pausedFlag) {
+        return;
+      }
+      //console.log("hi");
       requestAnimFrame( RabbitController.draw.bind(this), 25);
   		if ( typeof this.$rabbit != "undefined" ) {
   			this.$rabbit.run();
@@ -30,29 +36,47 @@ var RabbitController = {
       }
 
       // Draw Hit Boxes
-      $("#RabbitHitbox").css('left', $("#Rabbit").css('left'));
-      $("#RabbitHitbox").css('top', $("#Rabbit").css('top'));
-      $("#FoxHitbox").css('left', $("#Fox").css('left'));
-      $("#FoxHitbox").css('top', $("#Fox").css('top'));
+      $("#RabbitHitbox").css('left', parseInt($("#Rabbit").css('left')) + 50);
+      $("#RabbitHitbox").css('top', parseInt($("#Rabbit").css('top')) + 20);
+      $("#FoxHitbox").css('left', parseInt($("#Fox").css('left')) + 20);
+      $("#FoxHitbox").css('top', parseInt($("#Fox").css('top')) + 40);
 
       /*console.log("Rabbit");
       console.log(this.$rabbit.getBox());
       console.log("Fox");
       console.log(this.$fox.getBox());*/
-      if(this.$rabbit.getBox().overlaps(this.$fox.getBox())) {
-        console.log("BOOM");
+      //if(this.$rabbit.getBox().overlaps(this.$fox.getBox())) {
+      //  console.log("BOOM");
+      //}
+      if (doTheyCollide($("#RabbitHitbox"), $("#FoxHitbox"))) {
+        this.pausedFlag = true;
+        $('#StartMenu').show();
       }
 		}
   },
-  rabbitJump: function(e) {
-    console.log(e);
-    console.log(this);
-    if (e.which == 32) {
-      this.$rabbit.jump();
+  KeyPressed: function(e) {
+    if (this.pausedFlag) {
+      console.log('JUMP');
+      this.pausedFlag = false;
+      $('#StartMenu').hide();
+      this.resetGame();
+      this.draw();
+    }
+    else {
+      console.log(e);
+      console.log(this);
+      if (e.which == 32) {
+        this.$rabbit.jump();
+      }
     }
   },
-  spawnFox: function() {
-    this.$fox.x = this.$background.width();
+  resetGame: function() {
+    //$('#Fox').css('right', 0);
+    $('#Rabbit').css('top', 200);
+    this.$rabbit.state = "right";
+    this.$rabbit.vy = 0;
+    this.$rabbit.y = -200;
+    this.$rabbit.x = 0;
   }
 };
 

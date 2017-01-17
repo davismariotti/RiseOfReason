@@ -54,12 +54,7 @@ div#Rabbit {
     position: absolute;
     width:200px;
     height:200px;
-<<<<<<< Updated upstream
-    margin-top: 200px;
-    margin-left: 100px;
-=======
     top: 200px;
->>>>>>> Stashed changes
     content: url(../img/rabbit.gif);
     z-index: 0;
 }
@@ -83,19 +78,36 @@ div#Timer {
     left: 25px;
     top: 25px;
     padding: 5px;
-=======
+}
 
 div#RabbitHitbox {
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 120px;
+  height: 120px;
   border: 1px solid #000000;
 }
 
 div#FoxHitbox {
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 140px;
+  height: 120px;
   border: 1px solid #000000;
->>>>>>> origin/master:css/main.css
+}
+
+div#StartMenu {
+    position: absolute;
+    width:100%;
+    height:540px;
+     margin:auto;
+     background-color: black;
+     z-index: 1;
+}
+
+div#MenuText {
+  position: absolute;
+  width: 100%;
+  height: 540px;
+  color: white;
+  text-align: center;
+  margin-top: 150px;
 }
