@@ -71,3 +71,7 @@ function Box(x, y, width, height) {
     ));
   }
 }
+
+function collision() {
+  
+}

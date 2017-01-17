@@ -1,21 +1,21 @@
 div.container {
   position: relative;
-      width:3300px;
+      width:100%;
       height:540px;
 }
 
 div#FarBackground {
   position: absolute;
-    width:3000px;
+    width:100%;
     height:540px;
     margin:auto;
-    background-image: url(../img/FarBackground.png);
+    /*background-image: url(../img/FarBackground.png);*/
     z-index: -5;
 }
 
 div#Clouds {
   position: absolute;
-    width:3000px;
+    width:100%;
     height:540px;
      margin:auto;
      background-image: url(../img/Clouds.png);
@@ -24,7 +24,7 @@ div#Clouds {
 
 div#Background {
   position: absolute;
-    width:3000px;
+    width:100%;
     height:540px;
     margin:auto;
     background-image: url(../img/Background.png);
@@ -34,7 +34,7 @@ div#Background {
 
 div#Midground {
   position: absolute;
-    width:3000px;
+    width:100%;
     height:540px;
     margin:auto;
     background-image: url(../img/Midground.png);
@@ -43,7 +43,7 @@ div#Midground {
 
 div#Foreground {
   position: absolute;
-    width:3000px;
+    width:100%;
     height:540px;
   margin:auto;
   background-image: url(../img/Foreground.png);
@@ -69,6 +69,7 @@ div#Fox {
     content: url(../img/fox.gif);
     z-index: 0;
 }
+<<<<<<< HEAD:css/rabbit.css
 div#Timer {
     border: solid black 2px;
     background-color: #fff;
@@ -78,4 +79,25 @@ div#Timer {
     left: 25px;
     top: 25px;
     padding: 5px;
+=======
+
+div#RabbitHitbox {
+  display: block;
+  position: relative;
+  left: 30px;
+  top: 30px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #000000;
+}
+
+div#FoxHitbox {
+  display: block;
+  position: relative;
+  left: 30px;
+  top: 30px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #000000;
+>>>>>>> origin/master:css/main.css
 }

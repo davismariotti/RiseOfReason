@@ -8,7 +8,6 @@ var Fox = {
 	},
   init : function() {
     this.$sprites = $.preload(this.images);
-    this.y = $('#Fox').css('top');
     //$('div#Fox').empty().append(this.$sprites['run']);
   },
   getBox : function() {

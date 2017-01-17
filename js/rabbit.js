@@ -65,7 +65,7 @@ var Rabbit = {
     $('#Rabbit').css('top', (this.maxy-this.y) );
   },
   getBox : function() {
-    return new Box(this.x + 50, this.y - 20, 140, 120);
+    return new Box(parseInt($('#Rabbit').css('left')) + 50, this.y - 20, 140, 120);
   }
 
 }
