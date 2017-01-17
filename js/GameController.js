@@ -29,11 +29,17 @@ var RabbitController = {
         //console.log($('#fox').css('right'));
       }
 
-      console.log("Rabbit");
+      // Draw Hit Boxes
+      $("#RabbitHitbox").css('left', $("#Rabbit").css('left'));
+      $("#RabbitHitbox").css('top', -this.$rabbit.y);
+      $("#FoxHitbox").css('left', this.$fox.x);
+      $("#FoxHitbox").css('top', this.$fox.y);
+
+      /*console.log("Rabbit");
       console.log(this.$rabbit.getBox());
       console.log("Fox");
-      console.log(this.$fox.getBox());
-      if(this.$rabbit.getBox().contains(this.$fox.getBox())) {
+      console.log(this.$fox.getBox());*/
+      if(this.$rabbit.getBox().overlaps(this.$fox.getBox())) {
         console.log("BOOM");
       }
 

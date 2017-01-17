@@ -68,3 +68,23 @@ div#Fox {
     content: url(../img/fox.gif);
     z-index: 0;
 }
+
+div#RabbitHitbox {
+  display: block;
+  position: relative;
+  left: 30px;
+  top: 30px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #000000;
+}
+
+div#FoxHitbox {
+  display: block;
+  position: relative;
+  left: 30px;
+  top: 30px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #000000;
+}
